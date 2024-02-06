@@ -1,0 +1,167 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 17:00+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\app\templates\index.html:8 .\app\templates\index.html:16
+msgid "Feedback on Final Exam, Process, Performance and Evaluation"
+msgstr "Обратная связь по итогам экзамена, процесса, выполнения и оценки"
+
+#: .\app\templates\index.html:26
+msgid "Feedback language"
+msgstr "Язык обратной связи"
+
+#: .\app\templates\index.html:32
+msgid "Language:"
+msgstr "Язык:"
+
+#: .\app\templates\index.html:72
+msgid "Fill the Form"
+msgstr "Заполните форму"
+
+#: .\app\templates\index.html:79
+msgid "Full name"
+msgstr "Полное имя"
+
+#: .\app\templates\index.html:83
+msgid "Enter full name"
+msgstr "Введите полное имя"
+
+#: .\app\templates\index.html:90 .\app\templates\index.html:94
+msgid "School"
+msgstr "Школа"
+
+#: .\app\templates\index.html:106 .\app\templates\index.html:110
+msgid "Department"
+msgstr "Отделение"
+
+#: .\app\templates\index.html:112
+msgid "First select School"
+msgstr "Сначала выберите школу"
+
+#: .\app\templates\index.html:121 .\app\templates\index.html:124
+msgid "Subject"
+msgstr "Предмет"
+
+#: .\app\templates\index.html:126
+msgid "First select Department"
+msgstr "Сначала выберите отделение"
+
+#: .\app\templates\index.html:138
+msgid "Answer the Questions"
+msgstr "Ответьте на вопросы"
+
+#: .\app\templates\index.html:142
+msgid ""
+"Dear Student! Your answers will contribute to improving the content of "
+"subsequent modules of the course, in order to increase its effectiveness."
+msgstr ""
+"Уважаемый студент! Ваши ответы помогут улучшить содержание последующих "
+"модулей курса с целью повышения его эффективности."
+
+#: .\app\templates\index.html:150
+msgid "Please rate in points (lowest rating is 1, highest rating is 5)"
+msgstr "Пожалуйста, поставьте оценку в баллах (от 1 до 5)"
+
+#: .\app\templates\index.html:157 .\app\templates\index.html:194
+#: .\app\templates\index.html:231 .\app\templates\index.html:268
+#: .\app\templates\index.html:303 .\app\templates\index.html:339
+msgid "Question"
+msgstr "Вопрос"
+
+#: .\app\templates\index.html:161
+msgid "How well did your expectations from the course meet?"
+msgstr "Насколько хорошо ваши ожидания от курса сбылись?"
+
+#: .\app\templates\index.html:198
+msgid "The effectiveness of the chosen form of course delivery"
+msgstr "Эффективность выбранной формы проведения курса"
+
+#: .\app\templates\index.html:235
+msgid "Organization of the educational process (content, conditions, etc.)"
+msgstr "Организация учебного процесса (содержание, условия и т.д.)"
+
+#: .\app\templates\index.html:272
+msgid ""
+"Did the final exam adequately cover the course material that was taught?"
+msgstr ""
+"Адекватно ли финальный экзамен охватывал учебный материал курса?"
+
+#: .\app\templates\index.html:278 .\app\templates\index.html:314
+#: .\app\templates\index.html:349
+msgid "Strongly Agree"
+msgstr "Полностью согласен"
+
+#: .\app\templates\index.html:283 .\app\templates\index.html:319
+#: .\app\templates\index.html:354
+msgid "Agree"
+msgstr "Согласен"
+
+#: .\app\templates\index.html:288 .\app\templates\index.html:324
+#: .\app\templates\index.html:359
+msgid "Neither agree nor disagree"
+msgstr "Ни согласен, ни не согласен"
+
+#: .\app\templates\index.html:293 .\app\templates\index.html:329
+#: .\app\templates\index.html:364
+msgid "Strongly Disagree"
+msgstr "Полностью не согласен"
+
+#: .\app\templates\index.html:307
+msgid "Were the instructions clear and easy to understand?"
+msgstr "Инструкции были ясными и легкими для понимания?"
+
+#: .\app\templates\index.html:343
+msgid ""
+"Did you feel the final exam was a fair and accurate assessment of your "
+"learning in the course? "
+msgstr ""
+"Считаете ли вы, что финальный экзамен честно и точно оценил ваши знания в "
+"ходе курса?"
+
+#: .\app\templates\index.html:374
+msgid "YOUR COMMENTS (Very important for us)"
+msgstr "ВАШИ КОММЕНТАРИИ (Очень важно для нас)"
+
+#: .\app\templates\index.html:381 .\app\templates\index.html:398
+#: .\app\templates\index.html:415
+msgid "Comments"
+msgstr "Комментарии"
+
+#: .\app\templates\index.html:385 .\app\templates\index.html:389
+msgid "What new things did you learn during this course?"
+msgstr "Какие новые вещи вы узнали в ходе этого курса?"
+
+#: .\app\templates\index.html:402 .\app\templates\index.html:406
+msgid "What did you like most about the course and why?"
+msgstr "Что вам больше всего понравилось в курсе и почему?"
+
+#: .\app\templates\index.html:419 .\app\templates\index.html:423
+msgid ""
+"If you have additional comments, wishes to the administration, professors of "
+"the course, please write them."
+msgstr ""
+"Если у вас есть дополнительные комментарии, пожелания к администрации, "
+"преподавателям курса, напишите их, пожалуйста."
+
+#: .\app\templates\index.html:435
+msgid "Submit form"
+msgstr "Отправить форму"
+

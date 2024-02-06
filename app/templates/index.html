@@ -1,0 +1,480 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% trans 'Feedback on Final Exam, Process, Performance and Evaluation' %}</title>
+    <link rel="stylesheet" href="{% static 'app/css/styles.css' %}">
+</head>
+
+<body>
+<section class="main_layout">
+    <header>
+        <div class="header_block">
+            <h1 class="header_title">{% trans 'Feedback on Final Exam, Process, Performance and Evaluation' %}</h1>
+        </div>
+    </header>
+    <section class="content_layout">
+
+        <main class="main_content_layout">
+            <div class="main_content_container">
+
+
+                <div class="question_block">
+                    <div class="question_title_block">
+                        <h2>{% trans 'Feedback language' %} </h2>
+                    </div>
+                    <div class="settings_form_block">
+                        <div class="div_12">
+                            <div class="setting_option_block">
+
+                                <div class="setting_option_title_block">
+                                    <p>{% trans 'Language:' %}</p>
+                                </div>
+                                <div class="dropdown">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% if  LANGUAGE_CODE == "ru" %}
+                                        <button class="dropbtn" onclick="openList(this)">Русский</button>
+                                    {% elif  LANGUAGE_CODE == "uz" %}
+                                        <button class="dropbtn" onclick="openList(this)">O'zbekcha</button>
+                                    {% else %}
+                                        <button class="dropbtn" onclick="openList(this)">English</button>
+                                    {% endif %}
+                                    <div class="dropdown-content">
+                                        <form id="language_form" action="{% url 'set_language' %}" method="post">
+                                            {% csrf_token %}
+                                            {% if  LANGUAGE_CODE == "ru" %}
+                                                <a onclick="changeLanguage('en')">English</a>
+                                                <a onclick="changeLanguage('uz')">O'zbekcha</a>
+                                            {% elif  LANGUAGE_CODE == "uz" %}
+                                                <a onclick="changeLanguage('en')">English</a>
+                                                <a onclick="changeLanguage('ru')">Русский</a>
+                                            {% else %}
+                                                <a onclick="changeLanguage('ru')">Русский</a>
+                                                <a onclick="changeLanguage('uz')">O'zbekcha</a>
+                                            {% endif %}
+
+                                            <input id="language_input" type="hidden" name="language" value="">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <form action="{% url 'feedback_home_page' %}" method="POST" onsubmit="return checkFeedbackForm();">
+                    {% csrf_token %}
+
+                    <div class="question_block question_block--main">
+                        <input type="hidden" class="hidden_selector hidden_selector--main_info" name="user_language"
+                               value="{{ LANGUAGE_CODE }}">
+                        <div class="question_title_block">
+                            <h2>{% trans 'Fill the Form' %}</h2>
+                        </div>
+                        <div class="settings_form_block">
+                            <div class="div_12">
+
+                                <div class="setting_option_block">
+                                    <input type="hidden" class="hidden_selector hidden_selector--main_info"
+                                           name="school_id">
+                                    <div class="setting_option_title_block">
+                                        <p>{% trans 'School' %}:</p>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropbtn"
+                                           onclick="openList(this)">{% trans 'School' %}</a>
+                                        <div class="dropdown-content" id="school_dropdown">
+                                            {% for school in schools %}
+                                                <a id="{{ school.id }}"
+                                                   onclick="updateList(this, 'departments', 'dep_available_years')">{{ school.name }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="setting_option_block" id="departments_select">
+                                    <input type="hidden" class="hidden_selector hidden_selector--main_info"
+                                           name="department_id">
+                                    <div class="setting_option_title_block">
+                                        <p>{% trans 'Department' %}:</p>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropbtn"
+                                           onclick="openList(this)">{% trans 'Department' %}</a>
+                                        <div class="dropdown-content" id="department_dropdown">
+                                            <a>{% trans 'First select School' %}</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="setting_option_block" id="subjects_select">
+                                    <input type="hidden" class="hidden_selector hidden_selector--main_info"
+                                           name="subject_id">
+                                    <div class="setting_option_title_block">
+                                        <p>{% trans 'Subject' %}:</p>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropbtn" onclick="openList(this)">{% trans 'Subject' %}</a>
+                                        <div class="dropdown-content">
+                                            <a>{% trans 'First select Department' %}</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="setting_option_block" id="teachers_select">
+                                    <input type="hidden" class="hidden_selector hidden_selector--main_info"
+                                           name="teacher_id">
+                                    <div class="setting_option_title_block">
+                                        <p>{% trans 'Teacher' %}:</p>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropbtn" onclick="openList(this)">{% trans 'Teacher' %}</a>
+                                        <div class="dropdown-content">
+                                            <a>{% trans 'First select Subject' %}</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="submit_button_block">
+                        <input class="submit_button" type="button" value="{% trans 'Show questions' %}"
+                               onclick="if (checkUserInfoForm(this)) { showQuestions(); }">
+                    </div>
+
+                    <div class="all_questions_block all_questions_block--hide">
+                        <div class="question_block">
+                            <div class="question_title_block">
+                                <h2>{% trans 'Answer the Questions' %}</h2>
+                            </div>
+                            <div class="settings_form_block">
+                                <div class="div_12">
+                                    <p class="question_text">{% trans 'Dear Student! Your answers will contribute to improving the content of subsequent modules of the course, in order to increase its effectiveness.' %}</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="question_block">
+                            <div class="question_title_block" style="border: none;">
+                                <h2 style="font-weight: bold; padding: 0">{% trans 'Please rate in points (lowest rating is 1, highest rating is 5)' %}</h2>
+                            </div>
+
+                        </div>
+
+                        <div class="question_block">
+                            <div class="question_title_block">
+                                <h2>{% trans 'Question' %} 1</h2>
+                            </div>
+                            <div class="settings_form_block">
+                                <div class="div_12">
+                                    <p class="question_text">{% trans 'How well did your expectations from the course meet?' %}</p>
+
+                                    <div class="radiobutton_answer_block">
+                                        <!-- Add radio buttons with unique values and a shared name -->
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question1"
+                                                   value="1">
+                                            1 </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question1"
+                                                   value="2">
+                                            2 </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question1"
+                                                   value="3">
+                                            3 </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question1"
+                                                   value="4">
+                                            4 </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question1"
+                                                   value="5">
+                                            5 </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="question_block">
+                            <div class="question_title_block">
+                                <h2>{% trans 'Question' %} 2</h2>
+                            </div>
+                            <div class="settings_form_block">
+                                <div class="div_12">
+                                    <p class="question_text">{% trans 'The effectiveness of the chosen form of course delivery' %}</p>
+
+                                    <div class="radiobutton_answer_block">
+                                        <!-- Add radio buttons with unique values and a shared name -->
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question2"
+                                                   value="1">
+                                            1 </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question2"
+                                                   value="2">
+                                            2 </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question2"
+                                                   value="3">
+                                            3 </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question2"
+                                                   value="4">
+                                            4 </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question2"
+                                                   value="5">
+                                            5 </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="question_block">
+                            <div class="question_title_block">
+                                <h2>{% trans 'Question' %} 3</h2>
+                            </div>
+                            <div class="settings_form_block">
+                                <div class="div_12">
+                                    <p class="question_text">{% trans 'Organization of the educational process (content, conditions, etc.)' %}</p>
+
+                                    <div class="radiobutton_answer_block">
+                                        <!-- Add radio buttons with unique values and a shared name -->
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question3"
+                                                   value="1">
+                                            1 </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question3"
+                                                   value="2">
+                                            2 </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question3"
+                                                   value="3">
+                                            3 </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question3"
+                                                   value="4">
+                                            4 </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question3"
+                                                   value="5">
+                                            5 </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="question_block">
+                            <div class="question_title_block">
+                                <h2>{% trans 'Question' %} 4</h2>
+                            </div>
+                            <div class="settings_form_block">
+                                <div class="div_12">
+                                    <p class="question_text">{% trans 'To what extent did the final exam encompass the content covered throughout the course?' %}</p>
+
+                                    <div class="radiobutton_answer_block">
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question4"
+                                                   value="1">
+                                            1
+                                        </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question4"
+                                                   value="2">
+                                            2
+                                        </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question4"
+                                                   value="3">
+                                            3
+                                        </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question4"
+                                                   value="4">
+                                            4
+                                        </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question4"
+                                                   value="5">
+                                            5
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="question_block">
+                            <div class="question_title_block">
+                                <h2>{% trans 'Question' %} 5</h2>
+                            </div>
+                            <div class="settings_form_block">
+                                <div class="div_12">
+                                    <p class="question_text">{% trans 'Did the instructions appear straightforward and easily comprehensible?' %}</p>
+
+                                    <div class="radiobutton_answer_block">
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question5"
+                                                   value="1">
+                                            1
+                                        </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question5"
+                                                   value="2">
+                                            2
+                                        </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question5"
+                                                   value="3">
+                                            3
+                                        </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question5"
+                                                   value="4">
+                                            4
+                                        </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question5"
+                                                   value="5">
+                                            5
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="question_block">
+                            <div class="question_title_block">
+                                <h2>{% trans 'Question' %} 6</h2>
+                            </div>
+                            <div class="settings_form_block">
+                                <div class="div_12">
+                                    <p class="question_text">{% trans 'Do you believe the final exam fairly and accurately evaluated your understanding and progress in the course?' %}</p>
+
+                                     <div class="radiobutton_answer_block">
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question6"
+                                                   value="1">
+                                            1
+                                        </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question6"
+                                                   value="2">
+                                            2
+                                        </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question6"
+                                                   value="3">
+                                            3
+                                        </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question6"
+                                                   value="4">
+                                            4
+                                        </label>
+                                        <label class="answer_option_radio">
+                                            <input type="radio" name="question6"
+                                                   value="5">
+                                            5
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="question_block">
+                            <div class="question_title_block" style="border: none;">
+                                <h2 style="font-weight: bold; padding: 0">{% trans 'YOUR COMMENTS (Very important for us)' %}:</h2>
+                            </div>
+
+                        </div>
+
+                        <div class="question_block">
+                            <div class="question_title_block">
+                                <h2>{% trans 'Comments' %}</h2>
+                            </div>
+                            <div class="settings_form_block">
+                                <div class="div_12">
+                                    <p class="question_text">{% trans 'What new things did you learn during this course?' %}</p>
+                                    <textarea class="comment_textarea " rows="8" name="question7"
+                                              placeholder="{% trans 'What new things did you learn during this course?' %}"></textarea>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="question_block">
+                            <div class="question_title_block">
+                                <h2>{% trans 'Comments' %}</h2>
+                            </div>
+                            <div class="settings_form_block">
+                                <div class="div_12">
+                                    <p class="question_text">{% trans 'What did you like most about the course and why?' %}</p>
+
+
+                                    <textarea class="comment_textarea" rows="8" name="question8"
+                                              placeholder="{% trans 'What did you like most about the course and why?' %}"></textarea>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="question_block">
+                            <div class="question_title_block">
+                                <h2>{% trans 'Comments' %}</h2>
+                            </div>
+                            <div class="settings_form_block">
+                                <div class="div_12">
+                                    <p class="question_text">{% trans 'If you have additional comments, wishes to the administration, professors of the course, please write them.' %}</p>
+
+
+                                    <textarea class="comment_textarea" rows="8" name="question9"
+                                              placeholder="{% trans 'If you have additional comments, wishes to the administration, professors of the course, please write them.' %}"></textarea>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="submit_button_block">
+                            <input class="submit_button" type="submit" value="{% trans 'Submit form' %}"
+                                   onclick="return checkUserInfoForm();">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+
+            </div>
+        </main>
+
+    </section>
+
+</section>
+
+<script type="text/javascript" src="{% static 'app/js/app.js' %}"></script>
+
+</body>
+</html>
+
