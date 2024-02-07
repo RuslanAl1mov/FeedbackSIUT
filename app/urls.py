@@ -4,7 +4,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('feedback/', views.feedback_home_page, name='feedback_home_page'),
+    path('', views.feedback_home_page, name='feedback_home_page'),
 ]
 
 if settings.DEBUG:

@@ -256,17 +256,6 @@ function checkFeedbackForm() {
         }
     }
 
-    // Get all textarea elements within the form
-    var textareas = document.querySelectorAll('form textarea');
-
-    // Check if all textarea elements are not empty
-    for (var i = 0; i < textareas.length; i++) {
-        if (textareas[i].value.trim() === "") {
-            alert("Please fill in all textarea fields before submitting the form.");
-            return false;
-        }
-    }
-
     return true;
 }
 

@@ -52,7 +52,9 @@ class Question(models.Model):
 
 
 class Feedback(models.Model):
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=True, blank=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True, blank=True)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=True, blank=True,)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, null=True, blank=True)
     user_language = models.CharField(max_length=100, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
