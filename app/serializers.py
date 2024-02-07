@@ -11,16 +11,10 @@ class DepartmentSerializer(serializers.ModelSerializer):
 class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subject
-        fields = ['pk', 'department', 'subject_year', 'subject_semester', 'subject_name']
+        fields = ['pk', 'year', 'semester', 'name']
 
 
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
         fields = ['pk', 'name', 'photo']
-
-
-class TeacherSubjectSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TeacherSubject
-        fields = ['pk', 'teacher', 'subject']

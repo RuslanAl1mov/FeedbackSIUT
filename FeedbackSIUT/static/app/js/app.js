@@ -152,7 +152,7 @@ function updateSubjects(current_el) {
             if (json.answer !== "") {
                 for (let i of json) {
                     const newEl = document.createElement("a");
-                    newEl.text = i.subject_name;
+                    newEl.text = i.name;
                     newEl.id = i.pk;
                     newEl.addEventListener("click", () => {
                         updateTeachers(newEl);

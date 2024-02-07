@@ -14,7 +14,7 @@ class DepartmentTranslationOptions(TranslationOptions):
 
 @register(Subject)
 class SubjectTranslationOptions(TranslationOptions):
-    fields = ('subject_name',)
+    fields = ('name',)
 
 
 @register(Question)

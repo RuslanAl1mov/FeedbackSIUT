@@ -11,5 +11,6 @@ admin.site.register(Feedback)
 admin.site.register(Answer)
 admin.site.register(Teacher)
 admin.site.register(TeacherSubject)
+admin.site.register(SubjectDepartment)
 
 

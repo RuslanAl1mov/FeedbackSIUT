@@ -17,16 +17,17 @@ class Department(models.Model):
 
 
 class Subject(models.Model):
-    subject_year = models.IntegerField(null=False, blank=False)
-    subject_semester = models.IntegerField(null=False, blank=False)
-    subject_name = models.CharField(max_length=200, blank=True)
-    teacher_name = models.CharField(max_length=200, blank=True)
-    teacher_photo = models.ImageField(upload_to='teachers/img/', null=False, blank=False,
-                                      default='teachers/img/user.png')
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True, blank=True)
+    year = models.IntegerField(null=False, blank=False, default=1)
+    semester = models.IntegerField(null=False, blank=False, default=1)
+    name = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
-        return self.subject_name
+        return self.name
+
+
+class SubjectDepartment(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, null=True, blank=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class Teacher(models.Model):
