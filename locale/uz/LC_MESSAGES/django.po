@@ -1,0 +1,152 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-07 10:09+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\app\templates\index.html:8 .\app\templates\index.html:16
+msgid "Feedback on Final Exam, Process, Performance and Evaluation"
+msgstr ""
+"Yakuniy imtihonlar, jarayon, mahsuldorlik va baholash bo'yicha fikr-"
+"mulohazalar"
+
+#: .\app\templates\index.html:27
+msgid "Feedback language"
+msgstr "Qayta aloqa tili"
+
+#: .\app\templates\index.html:34
+msgid "Language:"
+msgstr "Til:"
+
+#: .\app\templates\index.html:78
+msgid "Fill the Form"
+msgstr "Formani to'ldiring"
+
+#: .\app\templates\index.html:87 .\app\templates\index.html:91
+msgid "School"
+msgstr "Fakultet"
+
+#: .\app\templates\index.html:104 .\app\templates\index.html:108
+msgid "Department"
+msgstr "Yo'nalish"
+
+#: .\app\templates\index.html:110
+msgid "First select School"
+msgstr "Avval Fakultetni tanlang"
+
+#: .\app\templates\index.html:119 .\app\templates\index.html:122
+msgid "Subject"
+msgstr "Fan"
+
+#: .\app\templates\index.html:124
+#, fuzzy
+#| msgid "Department"
+msgid "First select Department"
+msgstr "Avval yo'nalishni tanlang"
+
+#: .\app\templates\index.html:133 .\app\templates\index.html:136
+msgid "Teacher"
+msgstr "O'qituvchi"
+
+#: .\app\templates\index.html:138
+#, fuzzy
+#| msgid "First select School"
+msgid "First select Subject"
+msgstr "Avval Fakultetni tanlang"
+
+#: .\app\templates\index.html:149
+#, fuzzy
+#| msgid "Question"
+msgid "Show questions"
+msgstr "Savol"
+
+#: .\app\templates\index.html:156
+msgid "Answer the Questions"
+msgstr "Savollarga javob bering"
+
+#: .\app\templates\index.html:160
+msgid ""
+"Dear Student! Your answers will contribute to improving the content of "
+"subsequent modules of the course, in order to increase its effectiveness."
+msgstr ""
+"Hurmatli talaba! Sizning javoblaringiz fanning keyingi modullari mazmunini "
+"takomillashtirishga, uning samaradorligini oshirishga yordam beradi."
+
+#: .\app\templates\index.html:168
+msgid "Please rate in points (lowest rating is 1, highest rating is 5)"
+msgstr "Baholang (eng past ball - 1, eng yuqori ball - 5)"
+
+#: .\app\templates\index.html:175 .\app\templates\index.html:212
+#: .\app\templates\index.html:249 .\app\templates\index.html:286
+#: .\app\templates\index.html:326 .\app\templates\index.html:366
+msgid "Question"
+msgstr "Savol"
+
+#: .\app\templates\index.html:179
+msgid "How well did your expectations from the course meet?"
+msgstr "Kursdan umidlaringiz qanchalik oqlandi?"
+
+#: .\app\templates\index.html:216
+msgid "The effectiveness of the chosen form of course delivery"
+msgstr "Fanni o'tish uchun tanlangan shaklning samaradorligi"
+
+#: .\app\templates\index.html:253
+msgid "Organization of the educational process (content, conditions, etc.)"
+msgstr "O'quv jarayonini tashkil etish (tarkib, sharoitlar va boshqalar)."
+
+#: .\app\templates\index.html:290
+msgid ""
+"To what extent did the final exam encompass the content covered throughout "
+"the course?"
+msgstr "Yakuniy imtihon kurs davomida o‘rganilgan materiallarni qay darajada qamrab oldi?"
+
+#: .\app\templates\index.html:330
+msgid "Did the instructions appear straightforward and easily comprehensible?"
+msgstr "Yakuniy imtihon uchun ko'rsatmalar oddiy va tushunarli bo'ldimi?"
+
+#: .\app\templates\index.html:370
+msgid "Do you believe the final exam fairly and accurately evaluated your understanding and progress in the course?"
+msgstr "Fikringizcha, yakuniy imtihon kursdagi o'rgangan materiallaringizni adolatli va to'g'ri baholaganmi?"
+
+#: .\app\templates\index.html:406
+msgid "YOUR COMMENTS (Very important for us)"
+msgstr "Izohlaringiz (biz uchun bu juda muhim)"
+
+#: .\app\templates\index.html:413 .\app\templates\index.html:428
+#: .\app\templates\index.html:445
+msgid "Comments"
+msgstr "Izohlar"
+
+#: .\app\templates\index.html:417 .\app\templates\index.html:419
+msgid "What new things did you learn during this course?"
+msgstr "Ushbu kurs davomida qanday yangi narsalarni o'rgandingiz?"
+
+#: .\app\templates\index.html:432 .\app\templates\index.html:436
+msgid "What did you like most about the course and why?"
+msgstr "Kursda sizga ko'proq nima yoqdi va nega?"
+
+#: .\app\templates\index.html:449 .\app\templates\index.html:453
+msgid ""
+"If you have additional comments, wishes to the administration, professors of "
+"the course, please write them."
+msgstr ""
+"Kurs rahbariyatiga, professor-o'qituvchilariga qo'shimcha fikr-"
+"mulohazalaringiz, tilaklaringiz bo'lsa, yozib qoldiring."
+
+#: .\app\templates\index.html:460
+msgid "Submit form"
+msgstr "Yuborish"
