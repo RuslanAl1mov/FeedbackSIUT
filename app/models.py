@@ -62,4 +62,4 @@ class Feedback(models.Model):
 class Answer(models.Model):
     feedback = models.ForeignKey(Feedback, on_delete=models.CASCADE, null=True, blank=True)
     question_id = models.IntegerField(null=False, blank=False)
-    answer_value = models.CharField(max_length=1000, blank=False, null=False)
+    answer_value = models.CharField(max_length=1000, blank=True, null=False, default="")
