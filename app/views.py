@@ -20,3 +20,7 @@ def feedback_home_page(request):
 
     context = {"schools": School.objects.all()}
     return render(request, 'index.html', context=context)
+
+
+def feedback_results_page(request):
+    return render(request, 'feedback_results.html')
