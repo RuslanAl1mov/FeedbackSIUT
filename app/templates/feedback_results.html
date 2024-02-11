@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>{% trans 'Feedback Results' %}</title>
     <link rel="stylesheet" href="{% static 'app/css/styles.css' %}">
 </head>
-
 <body>
 <section class="main_layout">
     <header>
@@ -18,18 +18,15 @@
         </div>
     </header>
     <section class="content_layout">
-
         <main class="main_content_layout">
             <div class="main_content_container">
-
                 <div class="question_block">
                     <div class="question_title_block">
-                        <h2>{% trans 'Report language' %} </h2>
+                        <h2>{% trans 'Report language' %}</h2>
                     </div>
                     <div class="settings_form_block">
                         <div class="div_12">
                             <div class="setting_option_block">
-
                                 <div class="setting_option_title_block">
                                     <p>{% trans 'Language:' %}</p>
                                 </div>
@@ -37,229 +34,109 @@
                                     {% get_current_language as LANGUAGE_CODE %}
                                     {% get_available_languages as LANGUAGES %}
                                     {% get_language_info_list for LANGUAGES as languages %}
-                                    {% if  LANGUAGE_CODE == "ru" %}
-                                        <button class="dropbtn" onclick="openList(this)">Русский</button>
-                                    {% elif  LANGUAGE_CODE == "uz" %}
-                                        <button class="dropbtn" onclick="openList(this)">O'zbekcha</button>
-                                    {% else %}
-                                        <button class="dropbtn" onclick="openList(this)">English</button>
-                                    {% endif %}
+                                    <button class="dropbtn" onclick="openList(this)">
+                                        {% if LANGUAGE_CODE == "ru" %}Русский
+                                        {% elif LANGUAGE_CODE == "uz" %}O'zbekcha
+                                        {% else %}English
+                                        {% endif %}
+                                    </button>
                                     <div class="dropdown-content">
                                         <form id="language_form" action="{% url 'set_language' %}" method="post">
                                             {% csrf_token %}
-                                            {% if  LANGUAGE_CODE == "ru" %}
-                                                <a onclick="changeLanguage('en')">English</a>
-                                                <a onclick="changeLanguage('uz')">O'zbekcha</a>
-                                            {% elif  LANGUAGE_CODE == "uz" %}
-                                                <a onclick="changeLanguage('en')">English</a>
-                                                <a onclick="changeLanguage('ru')">Русский</a>
-                                            {% else %}
-                                                <a onclick="changeLanguage('ru')">Русский</a>
-                                                <a onclick="changeLanguage('uz')">O'zbekcha</a>
-                                            {% endif %}
-
+                                            <a onclick="changeLanguage('en')">English</a>
+                                            <a onclick="changeLanguage('ru')">Русский</a>
+                                            <a onclick="changeLanguage('uz')">O'zbekcha</a>
                                             <input id="language_input" type="hidden" name="language" value="">
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-                <div class="question_block">
-                    <div class="question_title_block" style="border: none;">
-                        <h2 style="font-weight: bold; padding: 0">{% trans 'Professors List' %}</h2>
-                    </div>
-                </div>
-
-                <div class="question_block">
-                    <div class="question_title_block">
-                        <h2>{% trans 'Prof. Shirin Noekhah' %}</h2>
-                    </div>
-                    <div class="div_22">
-
-                        <div class="fb_main_info_block">
-                            <div class="fb_main_info_div">
-                                <div class="param_title_fbmi_block">
-                                    <p class="--font-weight_500">{% trans 'Department' %}:</p>
-                                </div>
-                                <div class="param_title_fbmi_block">
-                                    <p class="--font-weight_600">Computer Science</p>
-                                </div>
-                            </div>
-                            <div class="fb_main_info_div">
-                                <div class="param_title_fbmi_block">
-                                    <p class="--font-weight_500">{% trans 'Subject' %}:</p>
-                                </div>
-                                <div class="param_title_fbmi_block">
-                                    <p class="--font-weight_600">Object Oriented Programming using Java I</p>
-                                </div>
-                            </div>
+                {% for teacher in teachers %}
+                    <div class="question_block">
+                        <div class="question_title_block">
+                            <h2>{{ teacher.name }}</h2>
                         </div>
-
-                        <div class="table-container">
-                            <table class="scrollable_table">
-                                <thead>
-                                <tr>
-                                    <th style="text-align: center">/</th>
-                                    <th>{% trans "Feedback" %} 1</th>
-                                    <th>{% trans "Feedback" %} 1</th>
-                                    <th>{% trans "Feedback" %} 1</th>
-                                    <th>{% trans "Feedback" %} 1</th>
-                                    <th>{% trans "Feedback" %} 1</th>
-                                    <th>{% trans "Feedback" %} 1</th>
-                                    <th>{% trans "Feedback" %} 1</th>
-                                    <th>{% trans "Feedback" %} 1</th>
-                                    <th>{% trans "Feedback" %} 1</th>
-                                    <th>{% trans "Feedback" %} 1</th>
-                                    <th>{% trans "Feedback" %} 1</th>
-                                    <th>{% trans "Total" %}:</th>
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th>{% trans "Question" %} 1</th>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <th>Ячейка 1-3</th>
-                                </tr>
-
-                                <tr>
-                                    <th>{% trans "Question" %} 2</th>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <th>Ячейка 1-3</th>
-                                </tr>
-                                <tr>
-                                    <th>{% trans "Question" %} 3</th>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <th>Ячейка 1-3</th>
-                                </tr>
-                                <tr>
-                                    <th>{% trans "Question" %} 4</th>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <th>Ячейка 1-3</th>
-                                </tr>
-                                <tr>
-                                    <th>{% trans "Question" %} 5</th>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <th>Ячейка 1-3</th>
-                                </tr>
-                                <tr>
-                                    <th>{% trans "Question" %} 6</th>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-3</td>
-                                    <td>Ячейка 1-1</td>
-                                    <td>Ячейка 1-2</td>
-                                    <th>Ячейка 1-3</th>
-                                </tr>
-                                <tr>
-                                    <th>{% trans "Total" %}:</th>
-                                    <th>Ячейка 1-3</th>
-                                    <th>Ячейка 1-3</th>
-                                    <th>Ячейка 1-3</th>
-                                    <th>Ячейка 1-3</th>
-                                    <th>Ячейка 1-3</th>
-                                    <th>Ячейка 1-3</th>
-                                    <th>Ячейка 1-3</th>
-                                    <th>Ячейка 1-3</th>
-                                    <th>Ячейка 1-3</th>
-                                    <th>Ячейка 1-3</th>
-                                    <th>Ячейка 1-3</th>
-                                    <th>Ячейка 1-3</th>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="fb_main_info_block --margin-top_20px">
-                            <div class="fb_main_info_div">
-                                <div class="param_title_fbmi_block">
-                                    <p class="--font-weight_bold">{% trans 'Total score' %}:</p>
+                        {% for feedback in teacher.feedbacks %}
+                            {% for subject in feedback.subjects %}
+                                <div class="div_22">
+                                    <div class="fb_main_info_block">
+                                        <div class="fb_main_info_div">
+                                            <div class="param_title_fbmi_block">
+                                                <p class="--font-weight_500">{% trans 'Department' %}:</p>
+                                            </div>
+                                            <div class="param_title_fbmi_block">
+                                                <p class="--font-weight_600">{{ feedback.department.name }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="fb_main_info_div">
+                                            <div class="param_title_fbmi_block">
+                                                <p class="--font-weight_500">{% trans 'Subject' %}:</p>
+                                            </div>
+                                            <div class="param_title_fbmi_block">
+                                                <p class="--font-weight_600">{{ subject.subject.name }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-container">
+                                        <table class="scrollable_table">
+                                            <thead>
+                                            <tr>
+                                                <th style="text-align: center">/</th>
+                                                {% for answer in subject.answers.0 %}
+                                                    {% if forloop.last %}
+                                                        <th>{% trans "Total" %}:</th>
+                                                    {% else %}
+                                                        <th>{% trans "Feedback" %} {{ forloop.counter }}</th>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for answers in subject.answers %}
+                                                <tr>
+                                                    <th>{% trans "Question" %} {{ forloop.counter }}</th>
+                                                    {% for answer in answers %}
+                                                        {% if forloop.last %}
+                                                            <th>{{ answer }}</th>
+                                                        {% else %}
+                                                            <td>{{ answer.answer_value }}</td>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </tr>
+                                            {% endfor %}
+                                            <tr>
+                                                <th>{% trans "Total" %}:</th>
+                                                {% for total_hor in subject.total_hor %}
+                                                    <th>{{ total_hor }}</th>
+                                                {% endfor %}
+                                                    <th>{{ subject.final_score }}</th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="fb_main_info_block --margin-top_20px">
+                                        <div class="fb_main_info_div">
+                                            <div class="param_title_fbmi_block">
+                                                <p class="--font-weight_bold">{% trans 'Total score' %}:</p>
+                                            </div>
+                                            <div class="param_title_fbmi_block">
+                                                <p class="--font-weight_bold">4.23</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="param_title_fbmi_block">
-                                    <p class="--font-weight_bold">4.23</p>
-                                </div>
-                            </div>
-                        </div>
-
+                                <div class="question_block_divider"></div>
+                            {% endfor %}
+                        {% endfor %}
                     </div>
-
-                    <div class="question_block_divider"></div>
-
-
-                </div>
-
+                {% endfor %}
             </div>
-
-
         </main>
-
     </section>
-
 </section>
-
 <script type="text/javascript" src="{% static 'app/js/app.js' %}"></script>
-
 </body>
 </html>
-
