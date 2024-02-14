@@ -20,7 +20,7 @@
     <section class="content_layout">
         <main class="main_content_layout">
             <div class="main_content_container">
-                <div class="question_block">
+                <div class="question_block organizer_class">
                     <div class="question_title_block">
                         <h2>{% trans 'Report language' %}</h2>
                     </div>
@@ -54,6 +54,19 @@
                         </div>
                     </div>
                 </div>
+
+            <div class="question_block organizer_class">
+                    <div class="question_title_block">
+                        <h2>{% trans 'Search' %}</h2>
+                    </div>
+                    <div class="fb_main_info_block">
+                        <div class="div_22">
+                            <input class="rep_search" type="text" placeholder="{% trans 'Find yourself here' %}" autocomplete="off" oninput="FeedbackResultsSearch(this)">
+                        </div>
+                    </div>
+                </div>
+
+
                 {% for teacher in teachers %}
                     <div class="question_block">
                         <div class="question_title_block">
@@ -112,7 +125,7 @@
                                                 {% for total_hor in subject.total_hor %}
                                                     <th>{{ total_hor }}</th>
                                                 {% endfor %}
-                                                    <th>{{ subject.final_score }}</th>
+                                                <th>{{ subject.final_score }}</th>
                                             </tr>
                                             </tbody>
                                         </table>

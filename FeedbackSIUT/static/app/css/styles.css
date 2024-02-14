@@ -428,11 +428,34 @@ label:focus {
 
 }
 
+.rep_search {
+    width: 100%;
+    border:none;
+    border-bottom: 1px solid var(--main-lightblue-color);
+    padding: 10px 20px;
+    outline: none;
+    box-sizing: border-box;
+    margin-top: 30px;
+
+    font-size: 25px;
+    font-weight: 400;
+    text-align: center;
+    color: var(--main-lightblue-color)
+}
+
+.-hide_block {
+    display: none;
+}
+
 
 
 @media (max-width: 1200px) {
     .main_content_container {
         width: 80%;
+    }
+
+    .rep_search {
+        font-size: 23px;
     }
 }
 
@@ -464,6 +487,10 @@ label:focus {
 
     .question_block {
         border-radius: 10px;
+    }
+
+    .rep_search {
+        font-size: 20px;
     }
 }
 
@@ -525,6 +552,11 @@ label:focus {
 
     .submit_button_block {
         justify-content: center;
+    }
+
+    .rep_search {
+        font-size: 20px;
+        margin-top: 20px;
     }
 
 }

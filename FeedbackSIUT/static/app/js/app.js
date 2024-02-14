@@ -259,6 +259,31 @@ function checkFeedbackForm() {
     return true;
 }
 
+function FeedbackResultsSearch(inputElement) {
+    var searchText = inputElement.value.toLowerCase();
+    var questionBlocks = document.querySelectorAll('.question_block');
+
+    questionBlocks.forEach(function(block) {
+        if (!block.classList.contains('organizer_class')) {
+            var titleText = block.querySelector('.question_title_block h2').textContent.toLowerCase();
+            if (searchText !== '' && !titleText.includes(searchText)) {
+                block.classList.add('-hide_block');
+            } else {
+                block.classList.remove('-hide_block');
+            }
+        }
+    });
+
+    if (searchText === '') {
+        questionBlocks.forEach(function(block) {
+            if (!block.classList.contains('organizer_class')) {
+                block.classList.remove('-hide_block');
+            }
+        });
+    }
+}
+
+
 
 
 
