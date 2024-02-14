@@ -60,7 +60,6 @@ def feedback_results_page(request):
                 feedbacks_for_subject = one_teacher_department_feedbacks.filter(subject=subject)
                 subject_feedbacks = {'subject': subject, 'answers': [], 'total_hor': []}
 
-                last_answer_obj = []
                 for question_num in range(6):
                     answers = []
                     total_vert = []
@@ -71,24 +70,25 @@ def feedback_results_page(request):
 
                         answers.append(answer_obj[question_num])
                         total_vert.append(int(answer_obj[question_num]['answer_value']))
-                        if answer_obj not in last_answer_obj:
-                            last_answer_obj.append(answer_obj)
+                        if question_num == 0:
                             th = 0
                             for i in answer_obj:
                                 th += int(i['answer_value'])
-                            subject_feedbacks['total_hor'].append(format(th/len(answer_obj), '.1f'))
+                            subject_feedbacks['total_hor'].append(format(th/len(answer_obj), '.2f'))
                     tv = 0
                     for i in total_vert:
                         tv += i
                     tv = tv / len(total_vert)
-                    answers.append(tv)
+
+                    answers.append("{:.2f}".format(tv))
                     total_vert.clear()
                     subject_feedbacks['answers'].append(answers)
 
                 th = 0
                 for i in subject_feedbacks['total_hor']:
-                  th += float(i)
-                subject_feedbacks['final_score'] = th/len(subject_feedbacks['total_hor'])
+                    th += float(i)
+                th = th / len(subject_feedbacks['total_hor'])
+                subject_feedbacks['final_score'] = "{:.2f}".format(th)
 
                 department_feedbacks['subjects'].append(subject_feedbacks)
 
