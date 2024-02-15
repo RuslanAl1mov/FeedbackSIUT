@@ -447,6 +447,34 @@ label:focus {
     display: none;
 }
 
+.-function_btn_block1 {
+    border: none;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 30px 50px 0 50px;
+}
+
+.-function_btn1 {
+    padding: 12px 25px;
+    background: var(--main-blue-color);
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+}
+
+
+.-function_btn1:hover {
+    background: var(--main-lightblue-color);
+}
+
+.-function_btn1:active {
+    background: var(--main-lightblue-color);
+}
+
 
 
 @media (max-width: 1200px) {

@@ -70,7 +70,7 @@
                 {% for teacher in teachers %}
                     <div class="question_block">
                         <div class="question_title_block">
-                            <h2>{{ teacher.name }}</h2>
+                            <h2>{{ teacher.teacher.name }}</h2>
                         </div>
                         {% for feedback in teacher.feedbacks %}
                             {% for subject in feedback.subjects %}
@@ -144,6 +144,9 @@
                                 <div class="question_block_divider"></div>
                             {% endfor %}
                         {% endfor %}
+                        <div class="-function_btn_block1">
+                            <a class="-function_btn1" href="{% url 'download_person_feedback_report' teacher.teacher.id %}" download="true">{% trans 'Download Report' %} </a>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
