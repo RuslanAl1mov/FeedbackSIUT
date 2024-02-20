@@ -362,7 +362,7 @@ def download_person_feedback_report(request, teacher_id):
     workbook.close()
 
     # Ваш секретный ключ API от ConvertAPI
-    convertapi.api_secret = 'FgOxsT6ZFEjYPKm4'
+    convertapi.api_secret = os.getenv('CONVERTAPI_KEY')
 
     try:
         # Конвертация файла
