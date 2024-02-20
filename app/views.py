@@ -320,8 +320,8 @@ def download_person_feedback_report(request, teacher_id):
 
     # Построение пути к файлу
     file_path = os.path.join(settings.BASE_DIR, 'FeedbackSIUT/static/app/files/feedback_report_example.xlsx')
-    excel_save_dir = os.path.join(settings.BASE_DIR, 'FeedbackSIUT/static/app/files/cached.xlsx')
-    pdf_save_dir = os.path.join(settings.BASE_DIR, f'FeedbackSIUT/static/app/files/{teacher.name}_feedback_report.pdf')
+    excel_file_path = os.path.join(settings.BASE_DIR, 'FeedbackSIUT/static/app/files/cached.xlsx')
+    pdf_file_path = os.path.join(settings.BASE_DIR, f'FeedbackSIUT/static/app/files/{teacher.name}_feedback_report.pdf')
     workbook = load_workbook(file_path)
     ws = workbook.active
     ws['B13'] = "Teacher's Name - " + teacher.name
@@ -358,20 +358,17 @@ def download_person_feedback_report(request, teacher_id):
     cell_ref = f'E{i + 14}'
     ws[cell_ref] = total_of_total_score
 
-    workbook.save(filename=excel_save_dir)
+    workbook.save(filename=excel_file_path)
     workbook.close()
 
-    # Пути к файлам с учетом директории проекта и имени учителя
-    excel_file_path = os.path.join(settings.BASE_DIR, 'FeedbackSIUT/static/app/files/cached.xlsx')
-    pdf_file_path = os.path.join(settings.BASE_DIR,
-                                 f'FeedbackSIUT/static/app/files/{teacher.name}_feedback_report.pdf')
-
     # Ваш секретный ключ API от ConvertAPI
-    convertapi.api_secret = 'API_KEY'
+    convertapi.api_secret = 'FgOxsT6ZFEjYPKm4'
 
     try:
         # Конвертация файла
-        result = convertapi.convert('pdf', {'File': excel_file_path}, from_format='xlsx')
+        result = convertapi.convert('pdf', {
+        'File': excel_file_path
+        }, from_format='xlsx')
         result.file.save(pdf_file_path)
 
         # Отправляем PDF файл пользователю
