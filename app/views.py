@@ -356,7 +356,7 @@ def download_person_feedback_report(request, teacher_id):
     ws[cell_ref].alignment = Alignment(horizontal="right")
 
     cell_ref = f'E{i + 14}'
-    ws[cell_ref] = total_of_total_score
+    ws[cell_ref] = "{:.2f}".format(total_of_total_score / (i - 1))
 
     workbook.save(filename=excel_file_path)
     workbook.close()
@@ -367,7 +367,7 @@ def download_person_feedback_report(request, teacher_id):
     try:
         # Конвертация файла
         result = convertapi.convert('pdf', {
-        'File': excel_file_path
+            'File': excel_file_path
         }, from_format='xlsx')
         result.file.save(pdf_file_path)
 
@@ -382,3 +382,90 @@ def download_person_feedback_report(request, teacher_id):
         # Удаление PDF файла после отправки
         if os.path.exists(pdf_file_path):
             os.remove(pdf_file_path)
+
+
+def download_feedback_complex_results(request):
+    context = {'teachers': []}
+    feedbacks = Feedback.objects.select_related('teacher', 'department', 'subject').all()
+
+    existed_teachers = set()
+    unique_teachers = [feedback.teacher for feedback in feedbacks if
+                       feedback.teacher not in existed_teachers and not existed_teachers.add(feedback.teacher)]
+
+    for teacher in unique_teachers:
+        teacher_info = {'name': teacher.name.upper().replace('PROF.', ''), 'total_answers': []}
+
+        teacher_feedbacks = Feedback.objects.filter(teacher_id=teacher.id)
+
+        answers = [[], [], [], [], [], []]
+        for feedback in teacher_feedbacks:
+            feedback_answers = Answer.objects.filter(feedback=feedback)
+            for answer in feedback_answers:
+                if answer.question_id < 7:
+                    answers[answer.question_id-1].append(int(answer.answer_value))
+
+        total_answer = 0
+        for question in answers:
+            average = float(sum(question)/len(question))
+            teacher_info['total_answers'].append("{:.2f}".format(average))
+            total_answer += average
+        teacher_info['total_answers'].append("{:.2f}".format(total_answer/6))
+
+        print(teacher_info)
+
+        context['teachers'].append(teacher_info)
+
+    wb = Workbook()
+    ws = wb.active
+
+    for c in range(20):
+        column_letter = get_column_letter(c + 1)
+        ws.column_dimensions[column_letter].width = 15
+
+    column_letter = get_column_letter(1)
+    ws.column_dimensions[column_letter].width = 5
+    column_letter = get_column_letter(2)
+    ws.column_dimensions[column_letter].width = 40
+
+    for r in range(60):
+        ws.row_dimensions[r].height = 20
+
+    thin_border = Border(left=Side(style='thin'),
+                         right=Side(style='thin'),
+                         top=Side(style='thin'),
+                         bottom=Side(style='thin'))
+
+    header_list = ['№', 'Teacher\'s Name', 'Question 1', 'Question 2', 'Question 3', 'Question 4', 'Question 5',
+                   'Question 6', 'AVERAGE']
+    ws.append(header_list)
+    last_row = ws.max_row
+
+    for col in range(1, len(header_list) + 1):
+        cell = ws.cell(row=last_row, column=col)
+        cell.alignment = Alignment(horizontal="center")
+        cell.border = thin_border
+        cell.fill = PatternFill(fill_type="solid", start_color="F2F2F2", end_color="F2F2F2")
+        cell.font = Font(bold=True)
+
+    row = 1
+    for teacher in context['teachers']:
+        row += 1
+        teacher['total_answers'].insert(0, teacher['name'])
+        teacher['total_answers'].insert(0, row-1)
+        ws.append(teacher['total_answers'])
+        last_row = ws.max_row
+
+        for col in range(1, len(header_list) + 1):
+            cell = ws.cell(row=last_row, column=col)
+            cell.alignment = Alignment(horizontal="center")
+            cell.border = thin_border
+            if col == len(header_list):
+                cell.font = Font(bold=True)
+                cell.fill = PatternFill(fill_type="solid", start_color="F2F2F2", end_color="F2F2F2")
+
+    # Подготовка HttpResponse для скачивания файла
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = f'attachment; filename="feedback_complex_report.xlsx"'
+    wb.save(response)
+
+    return response
