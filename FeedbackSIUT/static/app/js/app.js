@@ -249,7 +249,7 @@ function isRadioButtonChecked(questionNumber) {
 }
 
 function checkFeedbackForm() {
-    for (var i = 1; i <= 6; i++) {  // Start from 1 instead of 0 for question numbers
+    for (var i = 1; i <= 3; i++) {  // Start from 1 instead of 0 for question numbers
         if (!isRadioButtonChecked(i)) {
                 alert("Please select a response for Question " + i + ".");
             return false;

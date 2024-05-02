@@ -14,7 +14,7 @@
     <header>
         <div class="header_block">
             <h1 class="header_title">{% trans 'Feedback report' %}</h1>
-            <h1 class="secondary_header_title">{% trans 'Feedback on Final Exam, Process, Performance and Evaluation' %}</h1>
+            <h1 class="secondary_header_title">{% trans 'Questionnaire based on the results of the academic subject' %}</h1>
         </div>
     </header>
     <section class="content_layout">
@@ -55,13 +55,14 @@
                     </div>
                 </div>
 
-            <div class="question_block organizer_class">
+                <div class="question_block organizer_class">
                     <div class="question_title_block">
                         <h2>{% trans 'Search' %}</h2>
                     </div>
                     <div class="fb_main_info_block">
                         <div class="div_22">
-                            <input class="rep_search" type="text" placeholder="{% trans 'Find yourself here' %}" autocomplete="off" oninput="FeedbackResultsSearch(this)">
+                            <input class="rep_search" type="text" placeholder="{% trans 'Find yourself here' %}"
+                                   autocomplete="off" oninput="FeedbackResultsSearch(this)">
                         </div>
                     </div>
                 </div>
@@ -142,10 +143,31 @@
                                     </div>
                                 </div>
                                 <div class="question_block_divider"></div>
+
+                                {% for feedback_answers in subject.text_feedback %}
+
+                                    {% for answer in feedback_answers %}
+                                        <div class="settings_form_block">
+                                            <div class="div_12">
+                                                <p class="show_feedback_text">{{ answer }}</p>
+                                                <div style="height: 20px;"></div>
+                                            </div>
+
+                                        </div>
+                                    {% endfor %}
+                                    <div class="question_block_divider"></div>
+
+                                {% endfor %}
+
                             {% endfor %}
+
+
+
                         {% endfor %}
                         <div class="-function_btn_block1">
-                            <a class="-function_btn1" href="{% url 'download_person_feedback_report' teacher.teacher.id %}" download="true">{% trans 'Download Report' %} </a>
+                            <a class="-function_btn1"
+                               href="{% url 'download_person_feedback_report' teacher.teacher.id %}"
+                               download="true">{% trans 'Download Report' %} </a>
                         </div>
                     </div>
                 {% endfor %}

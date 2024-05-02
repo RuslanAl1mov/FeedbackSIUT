@@ -127,6 +127,14 @@ header {
     cursor: pointer;
 }
 
+.show_feedback_text {
+    color: var(--main-blue-color);
+    font-size: 19px;
+    margin-top: 20px;
+    padding: 0 20px;
+    font-weight: 400;
+}
+
 .radiobutton_answer_block {
     margin-top: 40px;
     display: flex;

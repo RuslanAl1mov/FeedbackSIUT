@@ -71,23 +71,25 @@ def feedback_results_page(request):
 
             for subject in unique_subjects:
                 feedbacks_for_subject = one_teacher_department_feedbacks.filter(subject=subject)
-                subject_feedbacks = {'subject': subject, 'answers': [], 'total_hor': []}
+                subject_feedbacks = {'subject': subject, 'answers': [], 'text_feedback': [], 'total_hor': []}
 
-                for question_num in range(6):
+                for question_num in range(3):
                     answers = []
                     total_vert = []
                     for feedback in feedbacks_for_subject:
-                        answer_obj = list(Answer.objects.filter(feedback=feedback).exclude(question_id__in=[7, 8, 9])
+                        answer_obj = list(Answer.objects.filter(feedback=feedback)
                                           .values('question_id', 'answer_value')
                                           .order_by('question_id'))
 
                         answers.append(answer_obj[question_num])
                         total_vert.append(int(answer_obj[question_num]['answer_value']))
+
                         if question_num == 0:
                             th = 0
-                            for i in answer_obj:
-                                th += int(i['answer_value'])
+                            for i in range(3):
+                                th += int(answer_obj[i]['answer_value'])
                             subject_feedbacks['total_hor'].append(format(th / len(answer_obj), '.2f'))
+
                     tv = 0
                     for i in total_vert:
                         tv += i
@@ -96,6 +98,21 @@ def feedback_results_page(request):
                     answers.append("{:.2f}".format(tv))
                     total_vert.clear()
                     subject_feedbacks['answers'].append(answers)
+
+                for question_num in range(6):
+                    answers = []
+                    for feedback in feedbacks_for_subject:
+                        answer_obj = list(Answer.objects.filter(feedback=feedback)
+                                          .values('question_id', 'answer_value')
+                                          .order_by('question_id'))
+                        try:
+                            if answer_obj[3 + question_num]['answer_value'].replace(' ', '') != '':
+                                answers.append(answer_obj[3 + question_num]['answer_value'])
+                        except Exception:
+                            pass
+
+                    if len(answers) != 0:
+                        subject_feedbacks['text_feedback'].append(answers)
 
                 th = 0
                 for i in subject_feedbacks['total_hor']:
@@ -108,7 +125,6 @@ def feedback_results_page(request):
             teacher_info['feedbacks'].append(department_feedbacks)
 
         context['teachers'].append(teacher_info)
-        print(context)
 
     return render(request, 'feedback_results.html', context=context)
 

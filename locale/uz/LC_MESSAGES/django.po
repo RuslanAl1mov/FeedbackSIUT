@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-07 10:09+0500\n"
+"POT-Creation-Date: 2024-05-02 11:36+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\app\templates\index.html:8 .\app\templates\index.html:16
+#: .\app\templates\feedback_results.html:9
+#, fuzzy
+#| msgid "Feedback language"
+msgid "Feedback Results"
+msgstr "Qayta aloqa tili"
+
+#: .\app\templates\feedback_results.html:16
+#, fuzzy
+#| msgid "Feedback language"
+msgid "Feedback report"
+msgstr "Qayta aloqa tili"
+
+#: .\app\templates\feedback_results.html:17
 msgid "Feedback on Final Exam, Process, Performance and Evaluation"
 msgstr ""
 "Yakuniy imtihonlar, jarayon, mahsuldorlik va baholash bo'yicha fikr-"
 "mulohazalar"
 
+#: .\app\templates\feedback_results.html:25
+#, fuzzy
+#| msgid "Feedback language"
+msgid "Report language"
+msgstr "Qayta aloqa tili"
+
+#: .\app\templates\feedback_results.html:31 .\app\templates\index.html:34
+msgid "Language:"
+msgstr "Til:"
+
+#: .\app\templates\feedback_results.html:60
+msgid "Search"
+msgstr ""
+
+#: .\app\templates\feedback_results.html:64
+msgid "Find yourself here"
+msgstr ""
+
+#: .\app\templates\feedback_results.html:82 .\app\templates\index.html:104
+#: .\app\templates\index.html:108
+msgid "Department"
+msgstr "Yo'nalish"
+
+#: .\app\templates\feedback_results.html:90 .\app\templates\index.html:119
+#: .\app\templates\index.html:122
+msgid "Subject"
+msgstr "Fan"
+
+#: .\app\templates\feedback_results.html:104
+#: .\app\templates\feedback_results.html:125
+msgid "Total"
+msgstr ""
+
+#: .\app\templates\feedback_results.html:106
+#, fuzzy
+#| msgid "Feedback language"
+msgid "Feedback"
+msgstr "Qayta aloqa tili"
+
+#: .\app\templates\feedback_results.html:114 .\app\templates\index.html:175
+#: .\app\templates\index.html:212 .\app\templates\index.html:249
+msgid "Question"
+msgstr "Savol"
+
+#: .\app\templates\feedback_results.html:137
+msgid "Total score"
+msgstr ""
+
+#: .\app\templates\feedback_results.html:170
+msgid "Download Report"
+msgstr ""
+
+#: .\app\templates\index.html:8 .\app\templates\index.html:16
+msgid "Questionnaire based on the results of the academic subject"
+msgstr "O‘quv kurslaridan olingan natijalar asosida"
+
 #: .\app\templates\index.html:27
 msgid "Feedback language"
 msgstr "Qayta aloqa tili"
-
-#: .\app\templates\index.html:34
-msgid "Language:"
-msgstr "Til:"
 
 #: .\app\templates\index.html:78
 msgid "Fill the Form"
@@ -40,17 +104,9 @@ msgstr "Formani to'ldiring"
 msgid "School"
 msgstr "Fakultet"
 
-#: .\app\templates\index.html:104 .\app\templates\index.html:108
-msgid "Department"
-msgstr "Yo'nalish"
-
 #: .\app\templates\index.html:110
 msgid "First select School"
 msgstr "Avval Fakultetni tanlang"
-
-#: .\app\templates\index.html:119 .\app\templates\index.html:122
-msgid "Subject"
-msgstr "Fan"
 
 #: .\app\templates\index.html:124
 #, fuzzy
@@ -90,12 +146,6 @@ msgstr ""
 msgid "Please rate in points (lowest rating is 1, highest rating is 5)"
 msgstr "Baholang (eng past ball - 1, eng yuqori ball - 5)"
 
-#: .\app\templates\index.html:175 .\app\templates\index.html:212
-#: .\app\templates\index.html:249 .\app\templates\index.html:286
-#: .\app\templates\index.html:326 .\app\templates\index.html:366
-msgid "Question"
-msgstr "Savol"
-
 #: .\app\templates\index.html:179
 msgid "How well did your expectations from the course meet?"
 msgstr "Kursdan umidlaringiz qanchalik oqlandi?"
@@ -108,38 +158,37 @@ msgstr "Fanni o'tish uchun tanlangan shaklning samaradorligi"
 msgid "Organization of the educational process (content, conditions, etc.)"
 msgstr "O'quv jarayonini tashkil etish (tarkib, sharoitlar va boshqalar)."
 
-#: .\app\templates\index.html:290
-msgid ""
-"To what extent did the final exam encompass the content covered throughout "
-"the course?"
-msgstr "Yakuniy imtihon kurs davomida o‘rganilgan materiallarni qay darajada qamrab oldi?"
-
-#: .\app\templates\index.html:330
-msgid "Did the instructions appear straightforward and easily comprehensible?"
-msgstr "Yakuniy imtihon uchun ko'rsatmalar oddiy va tushunarli bo'ldimi?"
-
-#: .\app\templates\index.html:370
-msgid "Do you believe the final exam fairly and accurately evaluated your understanding and progress in the course?"
-msgstr "Fikringizcha, yakuniy imtihon kursdagi o'rgangan materiallaringizni adolatli va to'g'ri baholaganmi?"
-
-#: .\app\templates\index.html:406
+#: .\app\templates\index.html:285
 msgid "YOUR COMMENTS (Very important for us)"
 msgstr "Izohlaringiz (biz uchun bu juda muhim)"
 
-#: .\app\templates\index.html:413 .\app\templates\index.html:428
-#: .\app\templates\index.html:445
+#: .\app\templates\index.html:292 .\app\templates\index.html:307
+#: .\app\templates\index.html:324 .\app\templates\index.html:341
+#: .\app\templates\index.html:358 .\app\templates\index.html:375
 msgid "Comments"
 msgstr "Izohlar"
 
-#: .\app\templates\index.html:417 .\app\templates\index.html:419
+#: .\app\templates\index.html:296 .\app\templates\index.html:298
 msgid "What new things did you learn during this course?"
 msgstr "Ushbu kurs davomida qanday yangi narsalarni o'rgandingiz?"
 
-#: .\app\templates\index.html:432 .\app\templates\index.html:436
+#: .\app\templates\index.html:311 .\app\templates\index.html:315
 msgid "What did you like most about the course and why?"
 msgstr "Kursda sizga ko'proq nima yoqdi va nega?"
 
-#: .\app\templates\index.html:449 .\app\templates\index.html:453
+#: .\app\templates\index.html:328 .\app\templates\index.html:332
+msgid "What would you like to change in the curriculum?."
+msgstr "O'quv dasturida nimani o'zgartirishni xohlaysiz?"
+
+#: .\app\templates\index.html:345 .\app\templates\index.html:349
+msgid "What else could be included in the course program?"
+msgstr "Kurs dasturiga yana nimalar kiritilishi mumkin?"
+
+#: .\app\templates\index.html:362 .\app\templates\index.html:366
+msgid "What OTHER subject would you like to continue your studies in?"
+msgstr "Yana qaysi fan bo'yicha o'qishni davom ettirmoqchisiz? "
+
+#: .\app\templates\index.html:379 .\app\templates\index.html:383
 msgid ""
 "If you have additional comments, wishes to the administration, professors of "
 "the course, please write them."
@@ -147,6 +196,6 @@ msgstr ""
 "Kurs rahbariyatiga, professor-o'qituvchilariga qo'shimcha fikr-"
 "mulohazalaringiz, tilaklaringiz bo'lsa, yozib qoldiring."
 
-#: .\app\templates\index.html:460
+#: .\app\templates\index.html:390
 msgid "Submit form"
 msgstr "Yuborish"
